@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('tips', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('summary');
             $table->text('content');
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
