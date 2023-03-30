@@ -43,7 +43,7 @@ class TipController extends Controller
 
         $tip = new Tip();
         $tip->title = $request->input('title');
-        $tip->category = $request->input('category');
+        $tip->category = $request->input('category_id');
         $tip->user_id = Auth::id();
         $tip->save();
     }
@@ -82,7 +82,7 @@ class TipController extends Controller
         ]);
 
         $tip->title = $request->input('title');
-        $tip->category = $request->input('category');
+        $tip->category = $request->input('category_id');
         $tip->save();
 
         return redirect->route('tips.index');
