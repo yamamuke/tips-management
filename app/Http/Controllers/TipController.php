@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tip;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TipController extends Controller
 {
@@ -12,20 +13,21 @@ class TipController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index() {
+        $tips = Auth::user()->tips;
+
+        return view('tips.index', compact('tips'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    // /**
+    //  * Show the form for creating a new resource.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function create()
+    // {
+    //     //
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -33,9 +35,17 @@ class TipController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+        $request->validate([
+            'title' => 'required',
+            'category' => 'required',
+        ]);
+
+        $tip = new Tip();
+        $tip->title = $request->input('title');
+        $tip->category = $request->input('category');
+        $tip->user_id = Auth::id();
+        $tip->save();
     }
 
     /**
@@ -44,9 +54,8 @@ class TipController extends Controller
      * @param  \App\Models\Tip  $tip
      * @return \Illuminate\Http\Response
      */
-    public function show(Tip $tip)
-    {
-        //
+    public function show(Tip $tip) {
+        return view('tips.show', compact('tips'));
     }
 
     /**
@@ -55,9 +64,8 @@ class TipController extends Controller
      * @param  \App\Models\Tip  $tip
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tip $tip)
-    {
-        //
+    public function edit(Tip $tip) {
+        return view('tips.edit', compact($tips));
     }
 
     /**
@@ -67,9 +75,17 @@ class TipController extends Controller
      * @param  \App\Models\Tip  $tip
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tip $tip)
-    {
-        //
+    public function update(Request $request, Tip $tip) {
+        $request->validate([
+            'title' => 'required',
+            'category => required',
+        ]);
+
+        $tip->title = $request->input('title');
+        $tip->category = $request->input('category');
+        $tip->save();
+
+        return redirect->route('tips.index');
     }
 
     /**
@@ -78,8 +94,9 @@ class TipController extends Controller
      * @param  \App\Models\Tip  $tip
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tip $tip)
-    {
-        //
+    public function destroy(Tip $tip) {
+        $tip->delete();
+
+        return redirect->route('tips.index');
     }
 }
