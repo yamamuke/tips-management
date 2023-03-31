@@ -26,5 +26,9 @@
 
         @include('layouts.footer')
     </div>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script>
+        CKEDITOR.replace('ckeditor');
+    </script>
 </body>
 </html>

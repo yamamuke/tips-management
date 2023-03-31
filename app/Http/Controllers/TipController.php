@@ -43,7 +43,8 @@ class TipController extends Controller
 
         $tip = new Tip();
         $tip->title = $request->input('title');
-        $tip->category = $request->input('category_id');
+        $tip->category_id = $request->input('category_id');
+        $tip->content = $request->input('content');
         $tip->user_id = Auth::id();
         $tip->save();
     }
@@ -78,7 +79,7 @@ class TipController extends Controller
     public function update(Request $request, Tip $tip) {
         $request->validate([
             'title' => 'required',
-            'category => required',
+            // 'category => required',
         ]);
 
         $tip->title = $request->input('title');

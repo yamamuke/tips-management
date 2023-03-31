@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TipController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('tips', TipController::class)->only(['index', 'store', 'show', 'edit', 'update', 'destroy']);
+Route::resource('tips', TipController::class)->only(['index', 'store', 'show', 'edit', 'update', 'destroy'])->middleware('auth');
 
-Route::resource('category', CategoryController::class)->only(['sore', 'update', 'destroy']);
+Route::resource('category', CategoryController::class)->only(['store', 'update', 'destroy'])->middleware('auth');
