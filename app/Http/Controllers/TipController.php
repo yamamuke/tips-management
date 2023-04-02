@@ -56,7 +56,7 @@ class TipController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Tip $tip) {
-        return view('tips.show', compact('tips'));
+        return view('tips.show', compact('tip'));
     }
 
     /**
@@ -66,7 +66,7 @@ class TipController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Tip $tip) {
-        return view('tips.edit', compact($tips));
+        return view('tips.edit', compact('tip'));
     }
 
     /**

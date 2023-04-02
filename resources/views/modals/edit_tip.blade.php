@@ -1,6 +1,6 @@
 <div class="modal fade" id="editTipModal{{ $tip->id }}" tabinex="-1" aria-labelledby="editTipModalLabel{{ $tip->id }}">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content" style="width:90vw; margin-left:-25vw;">
       <div class="modal-header">
         <h5 class="modal-title" id="editTipModalLabel{{ $tip->id}}">Tipの編集</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
