@@ -61,8 +61,8 @@
             <td><a href="#">{{ $tip->title }}></a></td>
             <td>{{ $tip->updated_at }}</td>
             <td>{{ $tip->category_id }}</td>
-            <td><button>編集</button></td>
-            <td><button>削除</button></td>
+            <td><button><a href="#" data-bs-toggle="modal" data-bs-target="#editTipModal{{ $tip->id }}">編集</a></button></td>
+            <td><button><a href="#" data-bs-toggle="modal" data-bs-target="#deleteTipModal{{ $tip->id }}"> 削除</a></button></td>
             <tr>
               <td>
                 <p>{{ strip_tags(mb_substr($tip->content, 0, 150)); }}&nbsp;...</p>

@@ -15,7 +15,7 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/', [TipController::class, 'index']);
+Route::get('/', [TipController::class, 'index'])->middleware('auth');
 
 Auth::routes();
 
@@ -23,4 +23,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('tips', TipController::class)->only(['index', 'store', 'show', 'edit', 'update', 'destroy'])->middleware('auth');
 
-Route::resource('category', CategoryController::class)->only(['store', 'update', 'destroy'])->middleware('auth');
+Route::resource('category', CategoryController::class)->only(['index', 'store', 'update', 'destroy']);

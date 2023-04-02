@@ -18,13 +18,12 @@
           </div>
           <div class="mt-2">
             <label for="content" style="display: block;">Tip詳細</label>
-            <textarea id="ckeditor" name="content" cols="55" rows="10"></textarea>
+            <textarea class="ckeditor" name="content" cols="55" rows="10"></textarea>
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary">登録</button>
           </div>
         </div>
-
       </form>
     </div>
   </div>

@@ -17,7 +17,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <!-- css -->
-    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 </head>
 <body style="padding: 60px 0;>
     <div id="app">
@@ -29,9 +29,10 @@
 
         @include('layouts.footer')
     </div>
+
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script>
-        CKEDITOR.replace('ckeditor');
-    </script>
+        var ckeditor = document.getElementByClass('ckeditor');
+        CKEDITOR.replace('ckeditor');</script>
 </body>
 </html>

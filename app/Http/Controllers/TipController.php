@@ -83,10 +83,11 @@ class TipController extends Controller
         ]);
 
         $tip->title = $request->input('title');
-        $tip->category = $request->input('category_id');
+        $tip->category_id = $request->input('category_id');
+        $tip->content = $request->input('content');
         $tip->save();
 
-        return redirect->route('tips.index');
+        return redirect()->route('tips.index');
     }
 
     /**
@@ -98,6 +99,6 @@ class TipController extends Controller
     public function destroy(Tip $tip) {
         $tip->delete();
 
-        return redirect->route('tips.index');
+        return redirect()->route('tips.index');
     }
 }
