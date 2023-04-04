@@ -21,6 +21,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('tips', TipController::class)->only(['index', 'store', 'show', 'edit', 'update', 'destroy'])->middleware('auth');
+Route::resource('tips', TipController::class)->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy'])->middleware('auth');
 
 Route::resource('category', CategoryController::class)->only(['index', 'store', 'update', 'destroy']);

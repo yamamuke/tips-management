@@ -44,8 +44,9 @@
           <th>タイトル</th>
           <th>更新日時</th>
           <th>カテゴリー</th>
-          <th>編集</th>
-          <th>削除</th>
+          <th></th>
+          <th></th>
+          <th></th>
           <td></td>
         </tr>
 
@@ -58,14 +59,15 @@
           @include('modals.delete_tip')
           
           <tr>
-            <td><a href="#">{{ $tip->title }}></a></td>
+            <td style="text-align: left;"><a href="#">{{ $tip->title }}></a></td>
             <td>{{ $tip->updated_at }}</td>
             <td>{{ $tip->category_id }}</td>
-            <!-- <td><button><a href="#" data-bs-toggle="modal" data-bs-target="#editTipModal{{ $tip->id }}">編集</a></button></td> -->
+            <td><button><a href="{{ route('tips.show', $tip) }}">詳細</a></button>
+            <!-- モーダルの場合: <td><button><a href="#" data-bs-toggle="modal" data-bs-target="#editTipModal{{ $tip->id }}">編集</a></button></td> -->
             <td><button><a href="{{ route('tips.edit', $tip) }}">編集</a></button></td>
             <td><button><a href="#" data-bs-toggle="modal" data-bs-target="#deleteTipModal{{ $tip->id }}"> 削除</a></button></td>
             <tr>
-              <td>
+              <td style="text-align: left;">
                 <p>{{ strip_tags(mb_substr($tip->content, 0, 150)); }}&nbsp;...</p>
               </td>
             </tr>

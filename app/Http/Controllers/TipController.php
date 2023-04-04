@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tip;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,15 +20,14 @@ class TipController extends Controller
         return view('tips.index', compact('tips'));
     }
 
-    // /**
-    //  * Show the form for creating a new resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function create()
-    // {
-    //     //
-    // }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create() {
+        return view('tips.create');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -47,6 +47,8 @@ class TipController extends Controller
         $tip->content = $request->input('content');
         $tip->user_id = Auth::id();
         $tip->save();
+
+        return redirect()->route('tips.index');
     }
 
     /**
@@ -56,6 +58,8 @@ class TipController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Tip $tip) {
+        // $categories = CategoryTip::where('id', tip->category_tip_id);
+
         return view('tips.show', compact('tip'));
     }
 
@@ -79,11 +83,12 @@ class TipController extends Controller
     public function update(Request $request, Tip $tip) {
         $request->validate([
             'title' => 'required',
-            // 'category => required',
+            'category => required',
         ]);
 
         $tip->title = $request->input('title');
         $tip->category_id = $request->input('category_id');
+        $tip->category_name = 
         $tip->content = $request->input('content');
         $tip->save();
 
