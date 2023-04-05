@@ -49,3 +49,8 @@
   height: 1.75rem;
   vertical-align: top;
 }
+
+.flash_message {
+  color: #18a745;
+  text-align: center;
+}

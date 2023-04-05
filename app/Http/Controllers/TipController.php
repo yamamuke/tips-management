@@ -16,8 +16,10 @@ class TipController extends Controller
      */
     public function index() {
         $tips = Auth::user()->tips;
+        $tips = Tip::orderBy('updated_at', 'desc')->get();
+        $categories = Auth::user()->categories;
 
-        return view('tips.index', compact('tips'));
+        return view('tips.index', compact('tips'), compact('categories'));
     }
 
     /**
@@ -48,7 +50,7 @@ class TipController extends Controller
         $tip->user_id = Auth::id();
         $tip->save();
 
-        return redirect()->route('tips.index')->with('flash_message', 'Tipを追加しました。');
+        return redirect()->route('tips.index')->with('flash_message', '「' . $tip->title . '」を追加しました。');
     }
 
     /**
@@ -58,9 +60,9 @@ class TipController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Tip $tip) {
-        // $categories = CategoryTip::where('id', tip->category_tip_id);
+        $categories = Auth::user()->categories;
 
-        return view('tips.show', compact('tip'));
+        return view('tips.show', compact('tip'), compact('categories'));
     }
 
     /**
@@ -91,7 +93,7 @@ class TipController extends Controller
         $tip->content = $request->input('content');
         $tip->save();
 
-        return redirect()->route('tips.show', $tip)->with('flash_message', 'Tipを編集しました。');
+        return redirect()->route('tips.show', $tip)->with('flash_message', '「' . $tip->title . '」を編集しました。');
     }
 
     /**
@@ -103,6 +105,6 @@ class TipController extends Controller
     public function destroy(Tip $tip) {
         $tip->delete();
 
-        return redirect()->route('tips.index')->with('flash_message', 'Tipを削除しました。');
+        return redirect()->route('tips.index')->with('flash_message', '「' . $tip->title . '」を削除しました。');
     }
 }

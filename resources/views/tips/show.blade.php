@@ -23,7 +23,7 @@
       </div>
 
       <div>
-        <a href="{{ route('tips.index') }}">トップに戻る</a>
+        <a href="{{ route('tips.index') }}">&lt;トップに戻る</a>
       </div>
 
       <div class="mb-2">
@@ -32,9 +32,9 @@
       </div>
       <div>
         <label class="my-3" style="font-weight: bold; for="category">カテゴリー</label>
-        {{-- @foreach ($categories as $category)
+        @foreach ($categories as $category)
           <p>{{ $category->name }}</p>
-        @endforeach --}}
+        @endforeach
       </div>
       <div class="mt-2">
         <label for="content" style="display: block;">Tip詳細</label>

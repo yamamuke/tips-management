@@ -41,10 +41,7 @@
           <th>タイトル</th>
           <th>カテゴリー</th>
           <th>更新日時</th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <td></td>
+          <th colspan="2"></th>
         </tr>
 
         @foreach ($tips as $tip)
@@ -61,18 +58,11 @@
               </div>
             </td>
             <td>
-              @foreach (\App\Models\Category::where('id', $tip->category_id) as $cat)
-                @foreach ($cat->pluck("name") as $name)
-                <span>{{  $name }}</span>
-                @endforeach
+              @foreach ($categories as $category)
+               {{ $category->name }}
               @endforeach
             </td>
             <td>{{ $tip->updated_at }}</td>
-            <td>
-              {{-- @foreach ($categories as $category)
-              <p>{{ $category->name }}</p>
-              @endforeach --}}
-            </td>
             <td><a href="{{ route('tips.edit', $tip) }}"><img src="{{ asset('storage/edit.png') }}" alt="編集" class="img"></a></td>
             <td><a href="#" data-bs-toggle="modal" data-bs-target="#deleteTipModal{{ $tip->id }}"><img src="{{ asset('storage/delete.png') }}" alt="削除" class="img"></a></td>
           </tr>
