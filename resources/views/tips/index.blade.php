@@ -20,14 +20,11 @@
         </div>
       @endif
 
-      <!-- Tipの追加用モーダル -->
-      @include('modals.add_tip')
-
       <!-- Categoryの追加用モーダル -->
       @include('modals.add_category')
 
       <div class="d-flex mb-3">
-        <a href="#" class="link-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#addTipModal">
+        <a href="{{ route('tips.create') }}" class="link-dark text-decoration-none">
           <div class="d-flex align-items-center">
             <span class="fs-5 fw-bold">＋</span>&nbsp;Tipの追加
           </div>
@@ -42,8 +39,8 @@
       <table class="tips-table">
         <tr>
           <th>タイトル</th>
-          <th>更新日時</th>
           <th>カテゴリー</th>
+          <th>更新日時</th>
           <th></th>
           <th></th>
           <th></th>
@@ -52,25 +49,32 @@
 
         @foreach ($tips as $tip)
 
-          <!-- Tipの編集用モーダル -->
-          @include('modals.edit_tip')
-
           <!-- Tipの削除用モーダル -->
-          @include('modals.delete_tip')
-          
+          @include('modals.delete_tip', $tip)
+
           <tr>
-            <td style="text-align: left;"><a href="#">{{ $tip->title }}></a></td>
+            <td style="text-align: left;">
+              <p class="title">{{ $tip->title }}</p>
+              <p>{{ strip_tags(mb_substr($tip->content, 0, 150)); }}&nbsp;...</p>
+              <div>
+                <a href="{{ route('tips.show', $tip) }}">詳細</a>
+              </div>
+            </td>
+            <td>
+              @foreach (\App\Models\Category::where('id', $tip->category_id) as $cat)
+                @foreach ($cat->pluck("name") as $name)
+                <span>{{  $name }}</span>
+                @endforeach
+              @endforeach
+            </td>
             <td>{{ $tip->updated_at }}</td>
-            <td>{{ $tip->category_id }}</td>
-            <td><button><a href="{{ route('tips.show', $tip) }}">詳細</a></button>
-            <!-- モーダルの場合: <td><button><a href="#" data-bs-toggle="modal" data-bs-target="#editTipModal{{ $tip->id }}">編集</a></button></td> -->
-            <td><button><a href="{{ route('tips.edit', $tip) }}">編集</a></button></td>
-            <td><button><a href="#" data-bs-toggle="modal" data-bs-target="#deleteTipModal{{ $tip->id }}"> 削除</a></button></td>
-            <tr>
-              <td style="text-align: left;">
-                <p>{{ strip_tags(mb_substr($tip->content, 0, 150)); }}&nbsp;...</p>
-              </td>
-            </tr>
+            <td>
+              {{-- @foreach ($categories as $category)
+              <p>{{ $category->name }}</p>
+              @endforeach --}}
+            </td>
+            <td><a href="{{ route('tips.edit', $tip) }}"><img src="{{ asset('storage/edit.png') }}" alt="編集" class="img"></a></td>
+            <td><a href="#" data-bs-toggle="modal" data-bs-target="#deleteTipModal{{ $tip->id }}"><img src="{{ asset('storage/delete.png') }}" alt="削除" class="img"></a></td>
           </tr>
         @endforeach
       </table>
