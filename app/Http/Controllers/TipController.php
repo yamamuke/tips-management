@@ -19,7 +19,7 @@ class TipController extends Controller
         $tips = Tip::orderBy('updated_at', 'desc')->get();
         $categories = Auth::user()->categories;
 
-        return view('tips.index', compact('tips'), compact('categories'));
+        return view('tips.index', compact('tips', 'categories'));
     }
 
     /**
@@ -61,6 +61,7 @@ class TipController extends Controller
      */
     public function show(Tip $tip) {
         $categories = Auth::user()->categories;
+        // $categories = $tip->categories()->get();
 
         return view('tips.show', compact('tip'), compact('categories'));
     }

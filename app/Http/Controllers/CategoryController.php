@@ -44,19 +44,8 @@ class CategoryController extends Controller
         $category->user_id = Auth::id();
         $category->save();
 
-        return redirect()->route('tips.index');
+        return redirect()->route('tips.index')->with('flash_message', 'カテゴリー「' . $category->name . '」を追加しました。');
     }
-
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  \App\Models\Category  $category
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show(Category $category)
-    // {
-    //     //
-    // }
 
     // /**
     //  * Show the form for editing the specified resource.
@@ -77,7 +66,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Category $category) {
-        $request-validdate([
+        $request->validate([
             'name' => 'required',
         ]);
 
@@ -85,7 +74,7 @@ class CategoryController extends Controller
         $category->user_id = Auth::id();
         $category->save();
 
-        return redirect()->route('tips.index');
+        return redirect()->route('tips.index')->with('flash_message', 'カテゴリー「' . $category->name . '」を編集しました。');
     }
 
     /**
@@ -97,6 +86,6 @@ class CategoryController extends Controller
     public function destroy(Category $category) {
         $category->delete();
 
-        return redirect()->route('tips.index');
+        return redirect()->route('tips.index')->with('flash_message', '「カテゴリー「' . $category->name . '」を削除しました。');
     }
 }

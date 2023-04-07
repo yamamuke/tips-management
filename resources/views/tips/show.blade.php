@@ -27,11 +27,11 @@
       </div>
 
       <div class="mb-2">
-        <label class="my-3" style="font-weight: bold;" for="name">タイトル</label>
+        <label class="my-3 fw-bold" for="name">タイトル</label>
         <p>{{ $tip->title }}</p>
       </div>
       <div>
-        <label class="my-3" style="font-weight: bold; for="category">カテゴリー</label>
+        <label class="my-3 fw-bold" for="category">カテゴリー</label>
         @foreach ($categories as $category)
           <p>{{ $category->name }}</p>
         @endforeach
