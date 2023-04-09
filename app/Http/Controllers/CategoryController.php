@@ -74,7 +74,7 @@ class CategoryController extends Controller
         $category->user_id = Auth::id();
         $category->save();
 
-        return redirect()->route('tips.index')->with('flash_message', 'カテゴリー「' . $category->name . '」を編集しました。');
+        return redirect()->route('tips.index')->with('flash_message', 'カテゴリー名を「' . $category->name . '」に変更しました。');
     }
 
     /**

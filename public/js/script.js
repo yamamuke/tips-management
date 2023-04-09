@@ -20,7 +20,7 @@ document.getElementById('editCategoryModal').addEventListener('show.bs.modal', (
 // カテゴリーの削除用モーダルを開くときの処理
 document.getElementById('deleteCategoryModal').addEventListener('show.bs.modal', (event) => {
   let deleteButton = event.relatedTarget;
-  let tagId = deleteButton.dataset.categoryId;
+  let categoryId = deleteButton.dataset.categoryId;
   let categoryName = deleteButton.dataset.categoryName;
 
   deleteCategoryForm.action = `categories/${categoryId}`;

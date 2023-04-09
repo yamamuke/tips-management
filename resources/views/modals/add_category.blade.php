@@ -8,7 +8,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addCategoryLabel">カテゴリーの追加</h5>
+        <h5 class="modal-title" id="addCategoryModalLabel">カテゴリーの追加</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
       </div>
       <form action="{{ route('categories.store') }}" method="post">
