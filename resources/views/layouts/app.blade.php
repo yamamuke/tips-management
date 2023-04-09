@@ -36,10 +36,6 @@
         @include('layouts.footer')
     </div>
 
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-    <script>
-        var ckeditor = document.getElementsByClassName('ckeditor');
-        CKEDITOR.replace('ckeditor');</script>
     <script src="{{ asset('/js/script.js') }}"></script>
 </body>
 </html>
