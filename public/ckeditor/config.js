@@ -35,4 +35,10 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+
+	// 環境問わず表示を日本語にする
+	config.language = 'ja';
+
+	// デフォルトのheightを変更
+	config.height = 500;
 };
