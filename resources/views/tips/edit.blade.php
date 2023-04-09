@@ -29,6 +29,11 @@
           </div>
           <div class="mt-2">
             <label for="category_id">カテゴリー</label>
+            <p>
+              @foreach ($categories as $category)
+                <span>{{ $category->name }}&nbsp;</span>
+              @endforeach
+            </p>
             <input type="text" class="form-control mt-1" name="category_id" value="{{ old('category', $tip->category_id) }}">
           </div>
           <div class="mt-2">
@@ -36,7 +41,7 @@
             <textarea id="ckeditor3" name="content">{{ old('content', $tip->content) }}</textarea>
           </div>
           <!-- public/ckeditor/ckeditor.jsを呼び出してid=ckeditor3に適用 -->
-          <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+          <script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
           <script type="text/javascript">CKEDITOR.replace( 'ckeditor3' );</script>
 
           <div class="mt-2">

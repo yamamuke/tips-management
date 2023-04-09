@@ -34,7 +34,7 @@
           <textarea id="ckeditor1" name="content">{{ old('content') }}</textarea>
         </div>
         <!-- public/ckeditor/ckeditor.jsを呼び出してid=ckeditor1に適用 -->
-        <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+        <script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
         <script type="text/javascript">CKEDITOR.replace( 'ckeditor1' );</script>
 
         <div class="mt-2">

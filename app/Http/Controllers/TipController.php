@@ -63,7 +63,7 @@ class TipController extends Controller
         $categories = Auth::user()->categories;
         // $categories = $tip->categories()->get();
 
-        return view('tips.show', compact('tip'), compact('categories'));
+        return view('tips.show', compact('tip', 'categories'));
     }
 
     /**
@@ -73,7 +73,9 @@ class TipController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Tip $tip) {
-        return view('tips.edit', compact('tip'));
+        $categories = Category::where('user_id', $tip->user_id)->get();
+
+        return view('tips.edit', compact('tip', 'categories'));
     }
 
     /**

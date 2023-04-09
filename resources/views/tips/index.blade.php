@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@push('scripts')
+  <script src="{{ asset('/js/script.js') }}"></script>
+@endpush
+
 @section('content')
   <article class="tips">
     <h1 style="text-align: center;">Tipsリスト</h1>

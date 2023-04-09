@@ -32,16 +32,18 @@
       </div>
       <div>
         <label class="my-3 fw-bold" for="category">カテゴリー</label>
-        @foreach ($categories as $category)
-          <span>{{ $category->name }}&nbsp;</span>
-        @endforeach
+        <p>
+          @foreach ($categories as $category)
+            <span>{{ $category->name }}&nbsp;</span>
+          @endforeach
+        </p>
       </div>
       <div class="mt-2">
         <label for="content" style="display: block;">Tip詳細</label>
         <textarea id="ckeditor2" name="content">{{ $tip->content }}</textarea>
       </div>
       <!-- public/ckeditor/ckeditor.jsを呼び出してid=ckeditor2に適用 -->
-      <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+      <script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
       <script type="text/javascript">CKEDITOR.replace( 'ckeditor2' );</script>
     </div>
   </article>
