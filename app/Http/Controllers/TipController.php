@@ -40,7 +40,7 @@ class TipController extends Controller
     public function store(Request $request) {
         $request->validate([
             'title' => 'required',
-            // 'category' => 'required',
+            'categor_id' => 'required',
         ]);
 
         $tip = new Tip();
@@ -50,6 +50,8 @@ class TipController extends Controller
         $tip->user_id = Auth::id();
         $tip->save();
 
+        $tip->categories()->sync($request->input('category_ids'));
+        
         return redirect()->route('tips.index')->with('flash_message', '「' . $tip->title . '」を追加しました。');
     }
 

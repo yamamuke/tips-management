@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tip extends Model
-{
+class Tip extends Model {
     use HasFactory;
 
     public function user() {
@@ -14,6 +13,6 @@ class Tip extends Model
     }
 
     public function categories() {
-        return $this->hasMany(Category::class);
+        return $this->belongsToMany(Category::class)->withTimestamps();
     }
 }
