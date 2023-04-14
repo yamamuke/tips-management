@@ -42,7 +42,6 @@ class TipController extends Controller
     public function store(Request $request) {
         $request->validate([
             'title' => 'required',
-            // 'categor_id' => 'required',
         ]);
 
         $tip = new Tip();
@@ -91,11 +90,9 @@ class TipController extends Controller
     public function update(Request $request, Tip $tip) {
         $request->validate([
             'title' => 'required',
-            // 'category_id' => 'required',
         ]);
 
         $tip->title = $request->input('title');
-        // $tip->category_id = $request->input('category_id');
         $tip->content = $request->input('content');
         $tip->save();
 
