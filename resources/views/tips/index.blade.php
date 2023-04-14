@@ -43,8 +43,8 @@
       <table class="tips-table">
         <tr>
           <th>タイトル</th>
-          <th>カテゴリー</th>
-          <th>更新日時</th>
+          {{-- <th>カテゴリー</th> --}}
+          <th class="display-date">更新日時</th>
           <th colspan="2"></th>
         </tr>
 
@@ -55,18 +55,23 @@
 
           <tr>
             <td style="text-align: left;">
-              <p class="title">{{ $tip->title }}</p>
-              <p>{{ strip_tags(mb_substr($tip->content, 0, 150)); }}&nbsp;...</p>
+              <div class="d-flex flex-wrap mb-1">
+                @foreach ($tip->categories()->orderBy('name', 'asc')->get() as $category)
+                  <span class="badge bg-secondary me-2 mb-1 fw-light">{{ $category->name }}</span>
+                @endforeach
+              </div>
+              <p class="title w-100">{{ $tip->title }}</p>
+              <p class="w-100">{{ strip_tags(mb_substr($tip->content, 0, 120)); }}&nbsp;...</p>
               <div>
                 <a href="{{ route('tips.show', $tip) }}">詳細</a>
               </div>
             </td>
-            <td>
+            {{-- <td>
               @foreach ($categories as $category)
                {{ $category->name }}
               @endforeach
-            </td>
-            <td>{{ $tip->updated_at }}</td>
+            </td> --}}
+            <td class="display-date">{{ date_format($tip->updated_at, 'Y/m/d H:i') }}</td>
             <td><a href="{{ route('tips.edit', $tip) }}"><img src="{{ asset('storage/edit.png') }}" alt="編集" class="img"></a></td>
             <td><a href="#" data-bs-toggle="modal" data-bs-target="#deleteTipModal{{ $tip->id }}"><img src="{{ asset('storage/delete.png') }}" alt="削除" class="img"></a></td>
           </tr>

@@ -15,21 +15,31 @@
 
       <h1>Tipの追加</h1>
 
-      <div>
+      <div class="mt-3">
         <a href="{{ route('tips.index') }}">&lt; 戻る</a>
       </div>
 
       <form action="{{ route('tips.store') }}" method="post">
         @csrf
-        <div class="mt-2">
+        <div class="mt-3">
           <label for="name">タイトル</label>
           <input type="text" class="form-control mt-1" name="title" value="{{ old('title') }}">
         </div>
-        <div class="mt-2">
-          <label for="category_id">カテゴリー</label>
-          <input type="text" class="form-control mt-1" name="category_id" value="{{ old('category_id') }}">
+        <div class="mt-3">
+          <label for="category_id">カテゴリーの選択</label>
         </div>
-        <div class="mt-2">
+        <!-- category_idを持ったcheckboxとbadgeスタイルのcategory_nameのリストを並べる -->
+        <div class="d-flex flex-wrap">
+          @foreach($categories as $category)
+            <label>
+              <div class="d-flex align-items-center mt-3 me-3">
+                <input type="checkbox" name="category_ids[]" value="{{ $category->id }}">
+                <span class="badge bg-secondary ms-1">{{ $category->name }}</span>
+              </div>
+            </label>
+          @endforeach
+        </div>
+        <div class="mt-4">
           <label for="content" style="display: block;">Tip詳細</label>
           <textarea id="ckeditor1" name="content">{{ old('content') }}</textarea>
         </div>

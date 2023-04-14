@@ -34,7 +34,7 @@
                 <span>{{ $category->name }}&nbsp;</span>
               @endforeach
             </p>
-            <input type="text" class="form-control mt-1" name="category_id" value="{{ old('category', $tip->category_id) }}">
+            <input type="text" class="form-control mt-1" name="category_id" value="{{ old('category_id', $tip->category_id) }}">
           </div>
           <div class="mt-2">
             <label for="content" style="display: block;">Tip詳細</label>

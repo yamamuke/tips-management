@@ -28,7 +28,9 @@ class TipController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('tips.create');
+        $categories = Auth::user()->categories;
+
+        return view('tips.create', compact('categories'));
     }
 
     /**
@@ -40,12 +42,11 @@ class TipController extends Controller
     public function store(Request $request) {
         $request->validate([
             'title' => 'required',
-            'categor_id' => 'required',
+            // 'categor_id' => 'required',
         ]);
 
         $tip = new Tip();
         $tip->title = $request->input('title');
-        $tip->category_id = $request->input('category_id');
         $tip->content = $request->input('content');
         $tip->user_id = Auth::id();
         $tip->save();
@@ -90,14 +91,16 @@ class TipController extends Controller
     public function update(Request $request, Tip $tip) {
         $request->validate([
             'title' => 'required',
-            'category => required',
+            // 'category_id' => 'required',
         ]);
 
         $tip->title = $request->input('title');
-        $tip->category_id = $request->input('category_id');
+        // $tip->category_id = $request->input('category_id');
         $tip->content = $request->input('content');
         $tip->save();
 
+        $tip->categories()->sync($request->input('category_ids'));
+        
         return redirect()->route('tips.show', $tip)->with('flash_message', '「' . $tip->title . '」を編集しました。');
     }
 
