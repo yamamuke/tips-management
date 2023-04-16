@@ -34,7 +34,7 @@
             <label>
               <div class="d-flex align-items-center mt-3 me-3">
                 <input type="checkbox" name="category_ids[]" value="{{ $category->id }}">
-                <span class="badge bg-secondary ms-1">{{ $category->name }}</span>
+                <span class="badge bg-secondary ms-1 fw-light">{{ $category->name }}</span>
               </div>
             </label>
           @endforeach

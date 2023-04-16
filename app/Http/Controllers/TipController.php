@@ -75,7 +75,7 @@ class TipController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Tip $tip) {
-        $categories = Category::where('user_id', $tip->user_id)->get();
+        $categories = Auth::user()->categories();
 
         return view('tips.edit', compact('tip', 'categories'));
     }

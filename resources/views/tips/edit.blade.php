@@ -15,7 +15,7 @@
 
       <h1 class="modal-title" id="editTipModalLabel{{ $tip->id}}">Tipの編集</h1>
 
-      <div>
+      <div class="mt-3">
         <a href="#" onclick="history.back()">&lt; 前のページに戻る</a>
       </div>
 
@@ -23,20 +23,27 @@
         @csrf
         @method('patch')
         <div>
-          <div class="mt-2">
+          <div class="mt-3">
             <label for="name">タイトル</label>
             <input type="text" class="form-control mt-1" name="title" value="{{ old('title', $tip->title) }}">
           </div>
-          <div class="mt-2">
-            <label for="category_id">カテゴリー</label>
-            <p>
-              @foreach ($categories as $category)
-                <span>{{ $category->name }}&nbsp;</span>
+          <div class="mt-3">
+            <label for="category_id">カテゴリーの選択</label>
+            <div class="d-flex flex-wrap">
+              @foreach ($categories->orderBy('name', 'asc')->get() as $category)
+                <label>
+                  <div class="d-flex align-items-center mt-3 me-3">
+                    @if ($tip->categories()->where('category_id', $category->id)->exists())
+                      <input type="checkbox" name="category_ids[]" value="{{ $category->id }}" checked>
+                    @else
+                      <input type="checkbox" name="category_ids[]" value="{{ $category->id }}">
+                    @endif
+                    <span class="badge bg-secondary ms-1 fw-light">{{ $category->name }}</span>
+                  </div>
+                </label>
               @endforeach
-            </p>
-            <input type="text" class="form-control mt-1" name="category_id" value="{{ old('category_id', $tip->category_id) }}">
-          </div>
-          <div class="mt-2">
+            </div>
+          <div class="mt-4">
             <label for="content" style="display: block;">Tip詳細</label>
             <textarea id="ckeditor3" name="content">{{ old('content', $tip->content) }}</textarea>
           </div>
