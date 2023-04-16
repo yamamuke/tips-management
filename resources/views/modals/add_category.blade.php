@@ -25,6 +25,7 @@
           </div>
         </div>
         <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
           <button type="submit" class="btn btn-primary">登録</button>
         </div>
       </form>

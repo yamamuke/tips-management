@@ -9,6 +9,7 @@
         <form action="{{ route('tips.destroy', $tip) }}" method="post">
           @csrf
           @method('delete')
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
           <button type="submit" class="btn btn-danger">削除</button>
         </form>
       </div>
