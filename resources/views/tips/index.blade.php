@@ -43,7 +43,6 @@
       <table class="tips-table">
         <tr>
           <th>タイトル</th>
-          {{-- <th>カテゴリー</th> --}}
           <th class="display-date">更新日時</th>
           <th colspan="2"></th>
         </tr>
@@ -66,11 +65,6 @@
                 <a href="{{ route('tips.show', $tip) }}">詳細</a>
               </div>
             </td>
-            {{-- <td>
-              @foreach ($categories as $category)
-               {{ $category->name }}
-              @endforeach
-            </td> --}}
             <td class="display-date">{{ date_format($tip->updated_at, 'Y/m/d H:i') }}</td>
             <td><a href="{{ route('tips.edit', $tip) }}"><img src="{{ asset('storage/edit.png') }}" alt="編集" class="img"></a></td>
             <td><a href="#" data-bs-toggle="modal" data-bs-target="#deleteTipModal{{ $tip->id }}"><img src="{{ asset('storage/delete.png') }}" alt="削除" class="img"></a></td>

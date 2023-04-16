@@ -13,7 +13,7 @@
         </div>
       @endif
 
-      <h1 class="modal-title" id="editTipModalLabel{{ $tip->id}}">Tipの編集</h1>
+      <h1 class="fs-2">Tipの編集</h1>
 
       <div class="mt-3">
         <a href="#" onclick="history.back()">&lt; 前のページに戻る</a>
@@ -32,7 +32,7 @@
             <div class="d-flex flex-wrap">
               @foreach ($categories->orderBy('name', 'asc')->get() as $category)
                 <label>
-                  <div class="d-flex align-items-center mt-3 me-3">
+                  <div class="d-flex align-items-center mt-2 me-3">
                     @if ($tip->categories()->where('category_id', $category->id)->exists())
                       <input type="checkbox" name="category_ids[]" value="{{ $category->id }}" checked>
                     @else
@@ -44,7 +44,7 @@
               @endforeach
             </div>
           <div class="mt-4">
-            <label for="content" style="display: block;">Tip詳細</label>
+            <label for="content" class="mb-2" style="display: block;">Tip詳細</label>
             <textarea id="ckeditor3" name="content">{{ old('content', $tip->content) }}</textarea>
           </div>
           <!-- public/ckeditor/ckeditor.jsを呼び出してid=ckeditor3に適用 -->
