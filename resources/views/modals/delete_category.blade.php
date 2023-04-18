@@ -9,7 +9,7 @@
         <form action="" method="post" name="deleteCategoryForm">
           @csrf
           @method('delete')
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+          <button type="button" class="btn btn-secondary me-1" data-bs-dismiss="modal">閉じる</button>
           <button type="submit" class="btn btn-danger">削除</button>
         </form>
       </div>

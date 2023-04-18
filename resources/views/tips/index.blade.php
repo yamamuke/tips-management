@@ -40,6 +40,12 @@
         </a>
       </div>
 
+      <!-- 並び替えボタン -->
+      <div class="d-flex justify-content-center my-3">
+        <a href="{{ route('tips.index', ['sort' => 'asc']) }}" class="sort-btn m-1">更新日時順（昇順）</a>
+        <a href="{{ route('tips.index', ['sort' => 'desc']) }}" class="sort-btn m-1">更新日時順（降順）</a>
+      </div>
+
       <table class="tips-table">
         <tr>
           <th>タイトル</th>

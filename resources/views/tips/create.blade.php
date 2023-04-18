@@ -40,7 +40,7 @@
           @endforeach
         </div>
         <div class="mt-4">
-          <label for="content" style="display: block;">Tip詳細</label>
+          <label for="content" class="mb-2" style="display: block;">Tip詳細</label>
           <textarea id="ckeditor1" name="content">{{ old('content') }}</textarea>
         </div>
         <!-- public/ckeditor/ckeditor.jsを呼び出してid=ckeditor1に適用 -->

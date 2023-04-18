@@ -14,9 +14,17 @@ class TipController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        $tips = Auth::user()->tips;
-        $tips = Tip::orderBy('updated_at', 'desc')->get();
+    public function index(Request $request) {
+        if (isset($_GET['sort'])) {
+            if ($_GET['sort'] === 'asc') {
+                $tips = Auth::user()->tips()->orderBy('updated_at', 'asc')->get();
+            } else {
+                $tips = Auth::user()->tips()->orderBy('updated_at', 'desc')->get();
+            }
+        } else {
+            $tips = Auth::user()->tips()->orderBy('updated_at', 'desc')->get();
+        }
+        
         $categories = Auth::user()->categories;
 
         return view('tips.index', compact('tips', 'categories'));
@@ -51,7 +59,7 @@ class TipController extends Controller
         $tip->save();
 
         $tip->categories()->sync($request->input('category_ids'));
-        
+
         return redirect()->route('tips.index')->with('flash_message', '「' . $tip->title . '」を追加しました。');
     }
 
@@ -63,7 +71,6 @@ class TipController extends Controller
      */
     public function show(Tip $tip) {
         $categories = Auth::user()->categories;
-        // $categories = $tip->categories()->get();
 
         return view('tips.show', compact('tip', 'categories'));
     }

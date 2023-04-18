@@ -18,7 +18,7 @@
           <div class="d-flex flex-wrap">
             @foreach ($categories as $category)
               <div class="d-flex align-items-center mt-2 ms-3 mb-1">
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editCategoryModal" data-bs-dismiss="modal" data-category-id="{{ $category->id }}" data-category-name="{{ $category->name }}">{{ $category->name }}</button>
+                <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#editCategoryModal" data-bs-dismiss="modal" data-category-id="{{ $category->id }}" data-category-name="{{ $category->name }}">{{ $category->name }}</button>
                 <button type="button" class="btn-close ms-1" aria-label="削除" data-bs-toggle="modal" data-bs-target="#deleteCategoryModal" data-bs-dismiss="modal" data-category-id="{{ $category->id }}" data-category-name="{{ $category->name }}"></button>
               </div>
             @endforeach
