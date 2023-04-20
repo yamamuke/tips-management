@@ -29,6 +29,7 @@ class TipController extends Controller
         // キーワード検索機能
         if (isset($_GET['keyword'])) {
             $keyword = $_GET['keyword'];
+            $tips = Auth::user()->tips()->where('content', 'like', "%$keyword%")->get();
         } else {
             $keyword = NULL;
         }
