@@ -15,6 +15,7 @@ class TipController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
+        // 更新日時順のソート機能
         if (isset($_GET['sort'])) {
             if ($_GET['sort'] === 'asc') {
                 $tips = Auth::user()->tips()->orderBy('updated_at', 'asc')->get();
@@ -25,9 +26,16 @@ class TipController extends Controller
             $tips = Auth::user()->tips()->orderBy('updated_at', 'desc')->get();
         }
         
+        // キーワード検索機能
+        if (isset($_GET['keyword'])) {
+            $keyword = $_GET['keyword'];
+        } else {
+            $keyword = NULL;
+        }
+
         $categories = Auth::user()->categories;
 
-        return view('tips.index', compact('tips', 'categories'));
+        return view('tips.index', compact('tips', 'categories', 'keyword'));
     }
 
     /**
@@ -50,6 +58,7 @@ class TipController extends Controller
     public function store(Request $request) {
         $request->validate([
             'title' => 'required',
+            'content' => 'required',
         ]);
 
         $tip = new Tip();
@@ -97,6 +106,7 @@ class TipController extends Controller
     public function update(Request $request, Tip $tip) {
         $request->validate([
             'title' => 'required',
+            'content' => 'required',
         ]);
 
         $tip->title = $request->input('title');

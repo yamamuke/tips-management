@@ -7,11 +7,6 @@
 @section('content')
   <article class="tips">
     <h1 style="text-align: center;">Tipsリスト</h1>
-    <div class=tips-ui">
-      <div>
-        <!-- ここに検索ボックスを作成する -->
-      </div>
-    </div>
 
     <div class="container h-100">
       @if ($errors->any())
@@ -27,7 +22,7 @@
       <!-- Categoryの追加用モーダル -->
       @include('modals.add_category')
 
-      <div class="d-flex mb-3">
+      <div class="d-flex mb-3 mx-auto">
         <a href="{{ route('tips.create') }}" class="link-dark text-decoration-none">
           <div class="d-flex align-items-center">
             <span class="fs-5 fw-bold">＋</span>&nbsp;Tipの追加
@@ -38,8 +33,13 @@
             <span class="fs-5 fw-bold">＋</span>&nbsp;カテゴリーの追加
           </div>
         </a>
+        <!-- 検索ボックス -->
+        <div class="margin-left-auto">
+          <form action="{{ route('tips.index') }}" method="get" class="search-form">
+            <input type="text" class="search-box" placeholder="キーワード検索" name="keyword" value="{{ $keyword }}">
+          </form>
+        </div>
       </div>
-
       <!-- 並び替えボタン -->
       <div class="d-flex justify-content-center my-3">
         <a href="{{ route('tips.index', ['sort' => 'asc']) }}" class="sort-btn m-1">更新日時順（昇順）</a>
