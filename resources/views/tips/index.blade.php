@@ -6,7 +6,6 @@
 
 @section('content')
   <article class="tips">
-    <h1 style="text-align: center;">Tipsリスト</h1>
 
     <div class="container h-100">
       @if ($errors->any())
@@ -18,6 +17,12 @@
           </ul>
         </div>
       @endif
+
+      <div class="d-flex justify-content-center">
+        <a href="{{ route('tips.index') }}" class="text-decoration-none">
+          <h1>Tipsリスト</h1>
+        </a>
+      </div>
 
       <!-- Categoryの追加用モーダル -->
       @include('modals.add_category')
@@ -33,17 +38,36 @@
             <span class="fs-5 fw-bold">＋</span>&nbsp;カテゴリーの追加
           </div>
         </a>
-        <!-- 検索ボックス -->
+        <!-- カテゴリー検索ボックス -->
         <div class="margin-left-auto">
+          <form action="{{ route('tips.index') }}" method="get" class="search-form">
+            <input type="hidden" name="sort" value="{{ $sort }}">
+            <select class="search-box" name="selected_category">
+              <option hidden selected disabled>カテゴリー検索</option>
+              @foreach ($ctgry_collection as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+              @endforeach
+            </select>
+            <input type="submit" name="submit" value="検索" />
+          </form>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center align-items-center position-relative">
+        <!-- キーワード検索ボックス -->
+        <div class="justify-content-start position-absolute start-0">
           <form action="{{ route('tips.index') }}" method="get" class="search-form">
             <input type="text" class="search-box" placeholder="キーワード検索" name="keyword" value="{{ $keyword }}">
           </form>
         </div>
-      </div>
-      <!-- 並び替えボタン -->
-      <div class="d-flex justify-content-center my-3">
-        <a href="{{ route('tips.index', ['sort' => 'asc']) }}" class="sort-btn m-1">更新日時順（昇順）</a>
-        <a href="{{ route('tips.index', ['sort' => 'desc']) }}" class="sort-btn m-1">更新日時順（降順）</a>
+        <!-- 並び替えボタン -->
+        <div class="my-3">
+          <a href="{{ route('tips.index', [
+              'sort' => 'asc', 'keyword' => $keyword, 'selected_category' => $selected_category
+            ]) }}" class="sort-btn m-1">更新日時順（昇順）</a>
+          <a href="{{ route('tips.index', [
+              'sort' => 'desc', 'keyword' => $keyword, 'selected_category' => $selected_category
+            ]) }}" class="sort-btn m-1">更新日時順（降順）</a>
+        </div>
       </div>
 
       <table class="tips-table">

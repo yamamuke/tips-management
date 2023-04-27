@@ -30,7 +30,7 @@
         </div>
         <!-- category_idを持ったcheckboxとbadgeスタイルのcategory_nameのリストを並べる -->
         <div class="d-flex flex-wrap">
-          @foreach($categories as $category)
+          @foreach($categories->orderBy('name', 'asc')->get() as $category)
             <label>
               <div class="d-flex align-items-center mt-3 me-3">
                 <input type="checkbox" name="category_ids[]" value="{{ $category->id }}">

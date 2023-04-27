@@ -15,28 +15,27 @@ class TipController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-        // 更新日時順のソート機能
-        if (isset($_GET['sort'])) {
-            if ($_GET['sort'] === 'asc') {
-                $tips = Auth::user()->tips()->orderBy('updated_at', 'asc')->get();
-            } else {
-                $tips = Auth::user()->tips()->orderBy('updated_at', 'desc')->get();
-            }
-        } else {
-            $tips = Auth::user()->tips()->orderBy('updated_at', 'desc')->get();
-        }
-        
-        // キーワード検索機能
-        if (isset($_GET['keyword'])) {
-            $keyword = $_GET['keyword'];
-            $tips = Auth::user()->tips()->where('content', 'like', "%$keyword%")->get();
-        } else {
-            $keyword = NULL;
-        }
-
         $categories = Auth::user()->categories;
+        // カテゴリー検索のプルダウンをカテゴリー名の昇順にするため
+        $ctgry_collection = Auth::user()->categories()->orderBy('name', 'asc')->get();
+        // 並び替え結果とキーワード検索の結果を相互に保持しながら実行
+        if (isset($_GET['sort'])) {$sort = $_GET['sort'];} else {$sort = 'desc';}
+        if (isset($_GET['keyword'])) {$keyword = $_GET['keyword'];} else {$keyword = null;}
+        $tips = Auth::user()->tips()->orderBy('updated_at', $sort)->
+            where('content', 'like', "%$keyword%")->get();
+        
+        // カテゴリー検索機能（並び替え順を維持）
+        if (isset($_GET['selected_category'])) {
+            $selected_category = $_GET['selected_category'];
+            $tips = $categories->find($selected_category)->
+                tips()->orderBy('updated_at', $sort)->get();
+        } else {
+            $selected_category = null;
+        }
 
-        return view('tips.index', compact('tips', 'categories', 'keyword'));
+        return view('tips.index', compact(
+            'tips', 'categories', 'sort', 'keyword', 'ctgry_collection', 'selected_category'
+        ));
     }
 
     /**
@@ -45,7 +44,7 @@ class TipController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $categories = Auth::user()->categories;
+        $categories = Auth::user()->categories();
 
         return view('tips.create', compact('categories'));
     }
@@ -80,7 +79,7 @@ class TipController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Tip $tip) {
-        $categories = Auth::user()->categories;
+        $categories = Auth::user()->categories();
 
         return view('tips.show', compact('tip', 'categories'));
     }
