@@ -39,13 +39,13 @@
           </div>
         </a>
         <!-- カテゴリー検索ボックス -->
-        <div class="margin-left-auto">
-          <form action="{{ route('tips.index') }}" method="get" class="search-form">
+        <div class="ms-auto">
+          <form action="{{ route('tips.index') }}" method="get">
             <input type="hidden" name="sort" value="{{ $sort }}">
-            <select class="search-box" name="selected_category">
-              <option hidden selected disabled>カテゴリー検索</option>
+            <select class="me-1" name="selected_category" required>
+              <option hidden selected disabled value="">&#xf02d; カテゴリー検索</option>
               @foreach ($ctgry_collection as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                <option value="{{ $category->id }}" class="option-valid">{{ $category->name }}</option>
               @endforeach
             </select>
             <input type="submit" name="submit" value="検索" />
@@ -55,8 +55,8 @@
       <div class="d-flex justify-content-center align-items-center position-relative">
         <!-- キーワード検索ボックス -->
         <div class="justify-content-start position-absolute start-0">
-          <form action="{{ route('tips.index') }}" method="get" class="search-form">
-            <input type="text" class="search-box" placeholder="キーワード検索" name="keyword" value="{{ $keyword }}">
+          <form action="{{ route('tips.index') }}" method="get">
+            <input type="text" class="search-box" placeholder="&#xf002; キーワード検索" name="keyword" value="{{ $keyword }}">
           </form>
         </div>
         <!-- 並び替えボタン -->

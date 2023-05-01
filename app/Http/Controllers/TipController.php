@@ -18,6 +18,7 @@ class TipController extends Controller
         $categories = Auth::user()->categories;
         // カテゴリー検索のプルダウンをカテゴリー名の昇順にするため
         $ctgry_collection = Auth::user()->categories()->orderBy('name', 'asc')->get();
+        
         // 並び替え結果とキーワード検索の結果を相互に保持しながら実行
         if (isset($_GET['sort'])) {$sort = $_GET['sort'];} else {$sort = 'desc';}
         if (isset($_GET['keyword'])) {$keyword = $_GET['keyword'];} else {$keyword = null;}

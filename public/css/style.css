@@ -67,8 +67,29 @@
   font-weight: 500 ;
 }
 
-.margin-left-auto {
-  margin-left: auto;
+.search-box {
+  box-sizing: border-box;
+  height: 1.75rem;
+  padding: 0.25rem 0.5rem;
+  background: #fffafa;
+  border: solid 1px gray;
+  outline: 0;
+  font-family: FontAwesome;
+}
+
+select {
+  height: 1.75rem;
+  font-size: 0.9rem;
+}
+
+select:invalid {
+  color: #757575!important;
+  font-family: FontAwesome;
+}
+
+.option-valid {
+  color: #000000;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 h1 {
@@ -80,3 +101,9 @@ h1:hover {
   color: #4682b4;
   filter: drop-shadow(1px 2px 0.5px rgba(10, 10, 10, 20));
 }
+
+/* @media screen(max-width: 768px) {
+  .sort-box {
+    width: 100px;
+  } 
+} */
