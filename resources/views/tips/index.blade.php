@@ -52,7 +52,7 @@
           </form>
         </div>
       </div>
-      <div class="d-flex justify-content-center align-items-center position-relative">
+      <div class="d-flex justify-content-center align-items-center position-relative keyword-sort">
         <!-- キーワード検索ボックス -->
         <div class="justify-content-start position-absolute start-0">
           <form action="{{ route('tips.index') }}" method="get">
@@ -60,7 +60,7 @@
           </form>
         </div>
         <!-- 並び替えボタン -->
-        <div class="my-3">
+        <div class="my-3 sort">
           <a href="{{ route('tips.index', [
               'sort' => 'asc', 'keyword' => $keyword, 'selected_category' => $selected_category
             ]) }}" class="sort-btn m-1">更新日時順（昇順）</a>
