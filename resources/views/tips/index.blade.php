@@ -33,7 +33,7 @@
             <span class="fs-5 fw-bold">＋</span>&nbsp;Tipの追加
           </div>
         </a>
-        <a href="#" class="ms-4 link-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+        <a href="#" class="ms-4 link-dark text-decoration-none add-cat" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
           <div class="d-flex align-items-center">
             <span class="fs-5 fw-bold">＋</span>&nbsp;カテゴリーの追加
           </div>

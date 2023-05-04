@@ -116,7 +116,7 @@ class TipController extends Controller
 
         $tip->categories()->sync($request->input('category_ids'));
         
-        return redirect()->route('tips.show', $tip)->with('flash_message', '「' . $tip->title . '」を編集しました。');
+        return redirect()->route('tips.index', $tip)->with('flash_message', '「' . $tip->title . '」を編集しました。');
     }
 
     /**

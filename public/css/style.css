@@ -1,4 +1,4 @@
-/* tips.index - .imgはtips.show, tips.editと共有 */
+/* tips.index - .imgはtips.show, tips.editと共通 */
 .tips-table tr {
   border-bottom: solid 1px #d9d9d9;
 }
@@ -113,6 +113,19 @@ h1:hover {
 スマートフォン用のスタイル
 ===================== */
 @media screen and (max-width: 767px) {
+  /* ヘッダーのハンバーガーボタンからのドロップダウンを右寄せにする */
+  #navbarDropdown {
+    margin-top: 20px;
+    float: right;
+  }
+
+  /* ログアウトボタンをユーザー名の左横に表示 */
+  .dropdown-menu {
+    max-width: 30px;
+    margin-right: 10px; 
+    float: right;
+  }
+
   .tips {
     font-size: 0.65rem;
   }
@@ -127,6 +140,11 @@ h1:hover {
   .title {
     font-size: 0.9rem;
     font-weight: bold;
+  }
+
+  /* カテゴリー追加ボタンの左マージンを減らす */
+  .add-cat {
+    margin-left: 1rem!important;
   }
 
   /* セレクトボックス */
