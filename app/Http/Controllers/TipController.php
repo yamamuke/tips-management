@@ -23,19 +23,24 @@ class TipController extends Controller
         if (isset($_GET['sort'])) {$sort = $_GET['sort'];} else {$sort = 'desc';}
         if (isset($_GET['keyword'])) {$keyword = $_GET['keyword'];} else {$keyword = null;}
         $tips = Auth::user()->tips()->orderBy('updated_at', $sort)->
-            where('content', 'like', "%$keyword%")->get();
+            where('content', 'like', "%$keyword%")->paginate(10);
+        // $sort, $keywordをpaginationと連携するためViewのpaginationに渡す
+        $params = array('sort' => $sort, 'keyword' => $keyword);
         
         // カテゴリー検索機能（並び替え順を維持）
         if (isset($_GET['selected_category'])) {
             $selected_category = $_GET['selected_category'];
             $tips = $categories->find($selected_category)->
-                tips()->orderBy('updated_at', $sort)->get();
+                tips()->orderBy('updated_at', $sort)->paginate(10);
+            // $sort, $selected_categoryをpaginationと連携するためViewのPaginationに渡す
+            $params = array('sort' => $sort, 'selected_category' => $selected_category);
         } else {
             $selected_category = null;
         }
 
         return view('tips.index', compact(
-            'tips', 'categories', 'sort', 'keyword', 'ctgry_collection', 'selected_category'
+            'tips', 'categories', 'sort', 'keyword', 'ctgry_collection',
+            'selected_category', 'params'
         ));
     }
 

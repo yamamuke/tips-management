@@ -6,7 +6,6 @@
 
 @section('content')
   <article class="tips">
-
     <div class="container h-100">
       @if ($errors->any())
         <div class="alert alert-danger">
@@ -101,6 +100,10 @@
           </tr>
         @endforeach
       </table>
+      <!-- ページネーションにappendsでパラメータ追加 -->
+      <div class="mt-2 d-flex justify-content-center">
+        <span>{{ $tips->appends($params)->links() }}</span>
+      </div>
     </div>
   </article>
 @endsection
