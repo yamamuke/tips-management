@@ -46,6 +46,11 @@
         <label for="content" class="mb-2" style="display: block;">Tip詳細</label>
         <textarea id="ckeditor2" name="content">{{ $tip->content }}</textarea>
       </div>
+
+      <div class="mt-3">
+        <a href="{{ route('tips.index') }}">&lt;トップに戻る</a>
+      </div>
+
       <!-- public/ckeditor/ckeditor.jsを呼び出してid=ckeditor2に適用 -->
       <script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
       <script type="text/javascript">CKEDITOR.replace( 'ckeditor2' );</script>
