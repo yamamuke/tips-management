@@ -95,8 +95,8 @@
               </div>
             </td>
             <td class="display-date">{{ date_format($tip->updated_at, 'Y/m/d H:i') }}</td>
-            <td><a href="{{ route('tips.edit', $tip) }}"><img src="{{ asset('storage/images/edit.png') }}" alt="編集" class="img"></a></td>
-            <td><a href="#" data-bs-toggle="modal" data-bs-target="#deleteTipModal{{ $tip->id }}"><img src="{{ asset('storage/images/delete.png') }}" alt="削除" class="img"></a></td>
+            <td><a href="{{ route('tips.edit', $tip) }}"><img src="{{ asset('storage/edit.png') }}" alt="編集" class="img"></a></td>
+            <td><a href="#" data-bs-toggle="modal" data-bs-target="#deleteTipModal{{ $tip->id }}"><img src="{{ asset('storage/delete.png') }}" alt="削除" class="img"></a></td>
           </tr>
         @endforeach
       </table>
